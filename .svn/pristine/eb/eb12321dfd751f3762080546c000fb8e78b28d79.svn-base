@@ -1,0 +1,5 @@
+
+<ul id="menu"> 
+	<div id="geral">
+	    <li><a href='<?php echo CONTROLLER . 'login.php'?>'>SAIR DO SISTEMA</a></li>
+	</ul> 

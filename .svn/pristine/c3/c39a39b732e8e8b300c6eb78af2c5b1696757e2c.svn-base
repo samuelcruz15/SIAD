@@ -1,0 +1,8 @@
+<?php
+	@session_start();
+	if(!$_SESSION['LOGIN']['VALID']){
+		 session_destroy();
+		 $_SESSION['MSG'] = "Acesso negado, efetue seu login para ter acesso";
+		 header('Location: ../login/inicio');
+	} 
+?>

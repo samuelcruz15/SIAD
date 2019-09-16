@@ -1,0 +1,12 @@
+<form style="margin-bottom:40px;">
+		Filtrar inscrições por evento: 
+		<select id="listEvento" name="evento" style="padding:3px">
+			<option value="">- Selecione o evento </option>
+			<?php
+				$result = $objBanco->select('eventos',' WHERE desativado is null');
+				while($arEvento =  mysql_fetch_array($result)){
+			?>
+			<option value="<?php echo $arEvento['id_eventos'];?>"<?php if($p2==$arEvento['id_eventos']) echo 'selected'; ?> > <?php echo $arEvento['nome']; ?> </option>
+			<?php } ?>
+		</select>
+	</form>

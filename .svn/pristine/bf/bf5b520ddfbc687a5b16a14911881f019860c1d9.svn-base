@@ -1,0 +1,24 @@
+<?php 
+	require_once '../configs/config.php';
+	require_once '../../model/cBanco.php';
+	require_once '../../model/cGeral.php';
+	
+	$objBanco = new cBanco();
+	$objGeral = new cGeral();
+	
+	header('Content-type: text/html; charset=utf-8'); 
+		
+	switch ($_GET['acao']){
+		
+		case 'buscaEventos':
+			$ids = substr($_GET['ids'],2);
+			$result = $objGeral->select('eventos'," WHERE id_eventos in({$ids})");
+			$txt = null;
+			while($ar=mysql_fetch_array($result)){
+				$txt[] = $ar['nome'] ;
+			}
+			echo json_encode($txt);
+		break;
+	}
+	
+?>

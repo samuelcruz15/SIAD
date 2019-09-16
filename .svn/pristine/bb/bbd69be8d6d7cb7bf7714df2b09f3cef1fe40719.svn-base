@@ -1,0 +1,26 @@
+<ul id="menu"> 
+	<div id="geral">
+	    <li><a href="<?php echo RAIZ . "inicio/inicioAdmin"; ?>">INÍCIO</a></li> 
+	    <li><a href="<?php echo RAIZ . "escola/lista"; ?>">ESCOLAS</a></li> 		 
+		<li><a href="<?php echo RAIZ . "inscricoes/lista"; ?>">INSCRIÇÕES</a></li>
+		<li><a href="<?php echo RAIZ . "categoria/lista"; ?>">CATEGORIAS</a></li> 
+		<li><a href="<?php echo RAIZ . "escola/upload"; ?>">UPLOADS</a></li>
+		
+		<!--<li><a href="<?php echo RAIZ . "inscricoes/listaRealizadas"; ?>">INSCRIÃ‡Ã•ES</a>
+			<div class="columns"> 
+	            <ul class="col"> 
+	                <li><a href="<?php echo RAIZ . "inscricoes/listaRealizadas"; ?>">Realizadas</a></li>
+					<li><a href="<?php echo RAIZ . "inscricoes/listaAConfirmar"; ?>"> A confirmar</a></li>
+					<li><a href="<?php echo RAIZ . "inscricoes/listaConfirmadas"; ?>">Confirmadas</a></li>
+					<li><a href="<?php echo RAIZ . "inscricoes/listaCanceladas"; ?>">Canceladas</a></li>
+	            </ul> 
+	        </div> 
+	    </li>-->
+		
+	
+		
+	    <li><a href='<?php echo CONTROLLER . 'login.php'?>'>SAIR DO SISTEMA</a></li>
+	</ul> 
+	<div id="geral">
+		<b>Secretaria de Atuação Itinerante -  Sistema de Inscrições</b>
+	</div>

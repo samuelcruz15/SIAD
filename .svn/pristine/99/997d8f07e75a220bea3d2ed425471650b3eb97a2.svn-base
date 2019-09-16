@@ -1,0 +1,59 @@
+<?php
+	ini_set('display_errors',1);
+	ini_set('display_startup_erros',1);
+	error_reporting(E_ALL);
+	
+	/************* CONSTANTES BANCO ***********/
+	define('B_HOST','localhost');
+	define('B_USUARIO','root');
+	define('B_SENHA','');
+	define('B_BANCO','escola');
+
+	/********* CONSTANTES CAMADA - VISAO E REDIRECIONAMENTO ********/
+	$PROTOCOLO = (strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') === false) ? 'http' : 'https';
+	define('PROTOCOLO', $PROTOCOLO);
+	define('DIR', ':84/desenvolvimento/frame/');
+	define('SERVER', $_SERVER['SERVER_NAME']); 
+	define('RAIZ', PROTOCOLO .'://'. SERVER . DIR); 
+	define ('CSS', RAIZ . 'public/css/');
+	define ('JS',  RAIZ . 'public/js/');
+	define ('IMG', RAIZ . 'public/images/');
+	define ('AJAX', RAIZ . 'application/ajax/');
+	
+	define ('LAYOUTS', 'application/layouts/');
+	define ('INCLUDES', 'application/includes/');
+	define ('CONTROLLER', RAIZ. 'controller/');
+		
+	
+	/********* Constantes a serem utilizadas na camada de - Controle ********/
+	define ('MODELS',  '../model/');
+	define ('CLASS_PHP',  '../application/class/');
+        
+        //define constantes do header
+        define('CONSTANT_CONTENT_TYPE', 'text/html; charset=UTF-8');
+        define('CONSTANT_CHARSET', 'utf-8');
+        define('CONSTANT_X_UA_COMPATIBLE', 'IE=edge');
+        define('CONSTANT_VIEWPORT', 'width=device-width, initial-scale=1');
+        define('CONSTANT_ROBOTS', 'NOINDEX, NOFOLLOW');
+
+        //define constantes do nome do sistema
+        define('CONSTANT_SISTEMA_SIGLA', 'SGPUU');
+        define('CONSTANT_SISTEMA_NOME_LINHA_1', 'Sistema de Gerenciamento de');
+        define('CONSTANT_SISTEMA_NOME_LINHA_2', 'Processos Unidade Urgente');
+        define('CONSTANT_SISTEMA_VERSAO', '0.0.1');
+
+        //define constantes do nome do órgão [DPU] e seção [STI]
+        define('CONSTANT_ORGAO_SIGLA', 'DPU');
+        define('CONSTANT_ORGAO_NOME', 'Defensoria Pública da União');
+        define('CONSTANT_SECAO_SIGLA', 'STI');
+        define('CONSTANT_SECAO_NOME', 'Secretaria de Tecnologia da Informação');
+
+        //define texto explicativo [tela login]
+        $texto = 'suportesgpuu@dpu.gov.br</br></br>';
+        $texto .= '(61) 3318-0206 / 3318-0209</br></br>';
+        $texto .= '<a href="http://www.dpu.def.br" target="_blank">Regulamento</a>';
+
+        //define constante texto
+        define('CONSTANT_TEXTO', $texto);
+
+?>

@@ -1,0 +1,38 @@
+<script type="text/javascript">
+	$(function(){ 	
+		$("#formLogin").validate();
+		$("#formLogin").submit(function() {
+			if( $("#formLogin").valid() ){
+	    		enviaForm(); 
+	    	}
+		});		
+	});
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4"></div>
+        <div class="col-xs-10 col-sm-6 col-md-4 col-lg-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center"><b>Informe Usuário e Senha da Rede</b></h3>
+                </div>
+                <div class="panel-body">
+                    <form action="<?php echo CONTROLLER . 'login.php'?>" role="form" method="post" accept-charset="utf-8">
+                        <fieldset>
+                            <div class='form-group'>
+                                <input type="user" name="arrDadosForm[ds_login]" id="usuario" class="form-control" placeholder="Nome de usuário"  />
+                            </div>
+                            <div class='form-group'>
+                                <input type="password" name="arrDadosForm['ds_senha']" id="senha" class="form-control" placeholder="Senha"  />
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-primary btn-block" >Acessar</button>
+                        </fieldset>
+                    </form>	
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 col-sm-3 col-md-4 col-lg-4"></div>
+    </div>
+</div>
+

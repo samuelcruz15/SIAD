@@ -1,0 +1,197 @@
+<?php
+require_once 'cBanco.php';
+	
+class cGeral extends cBanco{
+    
+/*
+ * Remove caracteres inadequados da string
+ */
+	function validaString($str){
+          $arInject   = array("'", '"', "\\\\","\\0","\\n","\\r","\Z","\'",'\"', "\\","\0","\n","\r","\x1a",
+            '"',"'","ORDER","order","BY","by","FROM","from","WHERE","where","HAVING","having","AND","and",
+              "LIKE","like","SELECT","select","INSERT","insert","DELETE","delete","INTO","into","UPDATE","update","<>","<=",
+              ">=","*","'1'");
+          return str_replace($arInject, "", $str);
+    }
+    
+    function redirect($msg, $url){ 
+    	$_SESSION['MSG'] = $msg;
+    	$URL = RAIZ . $url;
+    	header("location: $URL"); 
+    }
+
+ 
+	/*
+	* Passando data para formato PT 30/04/1984
+	*/
+	public function dataPt($data){
+		if($data == '--') return "";
+		$dia = substr($data,8, 2 );
+		$mes = substr($data,5, 2 );
+		$ano = substr($data,0, 4 );
+		if(!empty($data))
+			return $dia.'/'.$mes.'/'.$ano;
+		else
+			return "";
+	}
+	
+	/*
+	* Passando data para formato EN 1984-04-30
+	*/
+	public function dataEn($data){
+		$dia = substr($data,0, 2 );
+		$mes = substr($data,3, 2 );
+		$ano = substr($data,6, 4 );
+		if(!empty($data))
+			return $ano.'-'.$mes.'-'.$dia;
+		else
+			return "";
+	}
+	
+	/*
+	 * Mascaras em geral ex: CPF ###.###.###-##
+	 */
+	function mask($val, $mask){
+		 $maskared = '';
+		 $k = 0;
+		 for($i = 0; $i<=strlen($mask)-1; $i++){
+			 if($mask[$i] == '#'){
+			 	if(isset($val[$k]))
+			 	$maskared .= $val[$k++];
+			 }
+			 else{
+			 	if(isset($mask[$i]))
+			 	$maskared .= $mask[$i];
+			 }
+		 }
+		 return $maskared;
+	}
+	
+	/*
+	 * Monta select
+	 * tabelaSql = nome da tabela
+	 * condicaoSql = condicao SQL caso exista
+	 * comparacao = parametro de comparacao para exibir opcao selecionada
+	 * valueSelect = nome do campo da tabela a ser exibido como value do option
+	 * descricaoSelect = nome co campo da tabela a ser exibido como descricao do option
+	 * nomeSelect = nome do campo select
+	 * titleSelect = mensagem de obrigatorio
+	 * obrSelect = por padro o campo e setado como obrigatorio do contrario recebe null
+	 */
+	function selectGeral($tabelaSql, $valueSelect, $descricaoSelect, $nomeSelect, $idSelect=null,  $obrSelect, $titleSelect=null, $condicaoSql=null, $comparacao=null, $order=null){ ?>
+		
+		<select  name="<?php echo $nomeSelect; ?>" id="<?php echo $idSelect; ?>" title="<?php echo $titleSelect; ?>" class="<?php echo $obrSelect; ?>" >
+				<option value="">Selecione</option>
+				<?php 
+					$rs = $this->select($tabelaSql, $condicaoSql, $order); 
+					while ($ar = mysql_fetch_array($rs)){	
+						?>
+						<option value="<?php echo $ar["$valueSelect"]; ?>"<?php if($ar["$valueSelect"] == $comparacao) echo 'selected'; ?>>
+							<?php echo $ar["$descricaoSelect"]; ?>
+						</option>
+				<?php } ?>
+			</select>
+<?php 	}
+
+	/*
+	 * 
+	 */
+	function selectGenerica($opcao, $name, $param=null, $obr='required' ){ 
+		$sel = "<select name='{$name}' {$obr} title='Campo obrigatÃƒÂ³rio'>";
+			$rsGenerica = $this->select("generica", "WHERE st_opcao = '$opcao'", "st_descricao"); 
+			$sel .= "<option value=''>Selecione</option>";
+			while ($arGenerica = mysql_fetch_array($rsGenerica)){	
+					if($arGenerica['id_generica'] == $param) $selected = "selected";
+					else $selected = null;
+					
+				$sel .= "<option value='". $arGenerica['id_generica'] ."'". $selected .">";
+					$sel .= $arGenerica['st_descricao'];
+				$sel .= "</option>";
+			}  
+		$sel .= "</select>";
+		echo $sel;
+	}
+
+		/*
+		 * Limpa string
+		 */
+	function limpaString($texto){
+		$trocarIsso = array('ÃƒÂ ','ÃƒÂ¡','ÃƒÂ¢','ÃƒÂ£','ÃƒÂ¤','ÃƒÂ¥','ÃƒÂ§','ÃƒÂ¨','ÃƒÂ©','ÃƒÂª','ÃƒÂ«','ÃƒÂ¬','ÃƒÂ­','ÃƒÂ®','ÃƒÂ¯','ÃƒÂ±','ÃƒÂ²','ÃƒÂ³','ÃƒÂ´','ÃƒÂµ','ÃƒÂ¶','ÃƒÂ¹','ÃƒÂ¼','ÃƒÂº','ÃƒÂ¿','Ãƒâ‚¬','Ãƒï¿½','Ãƒâ€š','ÃƒÆ’','Ãƒâ€ž','Ãƒâ€¦','Ãƒâ€¡','ÃƒË†','Ãƒâ€°','ÃƒÅ ','Ãƒâ€¹','ÃƒÅ’','Ãƒï¿½','ÃƒÅ½','Ãƒï¿½','Ãƒâ€˜','Ãƒâ€™','Ãƒâ€œ','Ãƒâ€�','Ãƒâ€¢','Ãƒâ€“','Ãƒâ„¢','ÃƒÅ“','ÃƒÅ¡','Ã…Â¸',);
+		$porIsso =    array('a','a','a','a','a','a','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','u','u','u','y','A','A','A','A','A','A','C','E','E','E','E','I','I','I','I','N','O','O','O','O','O','U','U','U','Y',);
+		$titletext = str_replace($trocarIsso, $porIsso, $texto);
+		return $titletext;
+	}
+	
+	function numDiaDaSemana($data) {
+		// 0 para domingo
+		// 6 sabado
+		$timestamp = strtotime($this->dataEn($data));
+		$dia = date('w', $timestamp);
+		return $dia;
+	}
+	
+
+/**
+ * Paginação
+ *
+ * Cria uma paginação simples.
+ *
+ * @param int $total_artigos Número total de artigos da sua consulta
+ * @param int $artigos_por_pagina Número de artigos a serem exibidos nas páginas
+ * @param int $offset Número de páginas a serem exibidas para o usuário
+ *
+ * @return string A paginação montada
+ */
+function paginacao( $total_artigos = 0, $artigos_por_pagina = 10, $offset = 5, $url_pagina=null) {    
+    
+	// Obtém o número total de página
+    $numero_de_paginas = floor( $total_artigos / $artigos_por_pagina );
+    
+    // Obtém a página atual
+    $pagina_atual = 1;
+    
+    // Atualiza a página atual se tiver o parâmetro pagina=n
+    if ( ! empty( $_GET['pagina'] ) ) {
+        $pagina_atual = (int) $_GET['pagina'];
+    }
+    
+    // Vamos preencher essa variável com a paginação
+    $paginas = null;
+    
+    // Primeira página
+    $paginas .= " <b><a class='paginacao' href='".$url_pagina."/pagina/0'>Início</a></b>&nbsp;&nbsp;&nbsp; ";
+    
+    // Faz o loop da paginação
+    // $pagina_atual - 1 da a possibilidade do usuário voltar
+    for ( $i = ( $pagina_atual - 1 ); $i < ( $pagina_atual - 1 ) + $offset; $i++ ) {
+        
+        // Eliminamos a primeira página (que seria a home do site)
+        if ( $i < $numero_de_paginas && $i > 0 ) {
+            // A página atual
+            $página = $i;
+            
+            // O estilo da página atual
+            $estilo = null;
+            
+            // Verifica qual dos números é a página atual
+            // E cria um estilo extremamente simples para diferenciar
+            if ( $i == @$parametros[1] ) {
+                $estilo = ' class="paginaAtual" ';
+            }
+            
+            // Inclui os links na variável $paginas
+            $paginas .= " <a  class='paginacao' href='".$url_pagina."/pagina/$página'>$página</a> ";
+        }
+        
+    } // for
+ 
+    $paginas .= " &nbsp;&nbsp;&nbsp; <b><a class='paginacao' href='".$url_pagina."/pagina/$numero_de_paginas'>Última</a></b>";
+    
+    // Retorna o que foi criado
+    return $paginas;
+    
+	}
+	
+}
+
+?>

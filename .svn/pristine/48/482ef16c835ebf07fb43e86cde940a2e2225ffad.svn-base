@@ -1,0 +1,77 @@
+﻿<?php 
+	session_start();
+	require 'application/configs/config.php';
+	require "application/includes/cRoteadorUrl.php";
+	require "application/includes/capturaUrl.php";
+	require 'model/cBanco.php';
+	require 'model/cGeral.php';
+	$objBanco = new cBanco();
+	$objGeral = new cGeral();
+?>	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!DOCTYPE html><html lang="pt-br">
+    <head>
+        <title><?php echo CONSTANT_SISTEMA_SIGLA; ?></title>
+        <meta http-equiv="Content-Type" content="<?php echo CONSTANT_CONTENT_TYPE; ?>" /> 
+	<meta name="charset" content="<?php echo CONSTANT_CHARSET; ?>" />
+	<meta http-equiv="X-UA-Compatible" content="<?php echo CONSTANT_X_UA_COMPATIBLE; ?>" />
+	<meta name="viewport" content="<?php echo CONSTANT_VIEWPORT; ?>" />
+	<meta name="robots" content="<?php echo CONSTANT_ROBOTS; ?>" />
+	<meta name="description" content="<?php echo CONSTANT_SISTEMA_SIGLA . ' - ' . CONSTANT_SISTEMA_NOME; ?>" />
+	<meta name="author" content="<?php echo CONSTANT_SECAO_SIGLA . '/' . CONSTANT_ORGAO_SIGLA . ' - ' . CONSTANT_ORGAO_NOME; ?>" />
+	<link href="<?php echo IMG; ?>icone.png" rel="shortcut icon" type="image/ico" />
+	<link href="<?php echo CSS; ?>bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo CSS; ?>metisMenu.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo CSS; ?>sb-admin-2.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo CSS; ?>morris.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo CSS; ?>font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo CSS; ?>signin.css" rel="stylesheet" type="text/css" />
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="<?php echo CSS; ?>ie10-viewport-bug-workaround.css" rel="stylesheet" type="text/css" />
+
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+<body>
+
+<!-- TOPO -->
+<div class="container-fluid">
+    <div class="row row-header">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col"></div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col">
+            <div class="logo"><img src="<?php echo IMG; ?>logo.png"></div>
+        </div>
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 col-tittle">
+            <h3 class="text-tittle"><b><i><?php print CONSTANT_SISTEMA_SIGLA; ?></i></b></h3>
+            <h5 class="text-tittle"><?php print CONSTANT_SISTEMA_NOME_LINHA_1 . "</br>" . CONSTANT_SISTEMA_NOME_LINHA_2 ?></h5>
+        </div>
+    </div>
+</div>
+<!-- FIM TOPO -->   
+ 
+<!-- PAGINAS -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+            <?php require_once $urlRedirect; ?>
+        </div>
+    </div>
+</div>  
+<!-- FIM PAGINAS -->   
+ 
+<!-- RODAPE -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h6 class="text-aviso"><?php print CONSTANT_TEXTO; ?></p> 
+        </div>
+    </div>
+</div>
+<!-- FIM RODAPE -->	
+</body>	

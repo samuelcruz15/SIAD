@@ -1,0 +1,215 @@
+<script>
+$("document").ready( function(){ 
+	$("#cnpj").mask('99.999.999/9999-99');
+	$("#cep").mask('99999-999');
+	$('.fone').mask("(99) 9999-9999?9").ready(function(event) { // Mascara telefone acrescentando 9 se houver
+		var target, phone, element;
+		target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+		phone = target.value.replace(/\D/g, '');
+		element = $(target);
+		element.unmask();
+		if(phone.length > 15) {
+			element.mask("(99) 99999-999?9");
+		} else {
+			element.mask("(99) 9999-9999?9");  
+		}
+	});
+	
+	$("#formInscricao").validate();
+		$("#formInscricao").submit(function() {
+			if( $("#formInscricao").valid() ){
+	    		$("#complexConfirm").hide();
+				if ( confirm("Aceito os termos e condições estabelecidos pelo regulamento do 1º Concurso de Redação da DPU")){
+					enviaForm(); 
+				} else{
+					return false;
+				}
+			}
+		});
+		
+		
+		var campos_max  = 10;   //max de 10 campos
+        var x = 1; // campos iniciais
+        $('#add_field').click (function(e) {
+                e.preventDefault();     //prevenir novos clicks
+                if (x < campos_max) {
+                        $('#listas').append('<tr><td>Descrição do arquivo: <input type="text" name="fileDescricao[]">&nbsp;<input type="FILE" name="fileArquivo[]" style="position:relative; left:15px;" /></tr></td>');
+                        x++;
+                }
+        });
+ 
+        // Remover o div anterior
+        $('#listas').on("click",".remover_campo",function(e) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+                x--;
+        });
+		
+})
+
+function abreCont(cont){
+	if( $("#contCategoria"+cont).is(':visible') ) {
+	  $("#contCategoria"+cont).hide()
+	} else {
+	  $("#contCategoria"+cont).show();
+	}
+}
+
+function buscaCEP(){ 
+    var cep = $.trim($('#cep').val()); 
+	cep = cep.replace('-','');
+	$.getJSON('http://cep.correiocontrol.com.br/'+cep+'.json', function(data) {
+		$('#endereco').val(data.logradouro);
+		$('#setor').val(data.bairro);
+		$('#cidade').val(data.localidade);
+		$('#uf').val(data.uf);
+	});
+}
+</script>
+
+<?php
+	$arDados =  null;
+?>
+
+
+<script type="text/javascript" src="<?php echo JS; ?>jquery-ui-1.11.4.js"></script>
+<style type="text/css">
+	input[type="text"] { width:300px;}
+	.error { color:#ff0000;}
+	tabel tr td { float:left!important;}
+	.tituloForm{background:#009393; color:#fff; padding:3px 0; text-align:center}
+	.tituloCategoria{ background:#00A7B3; color:#fff; padding:3px 0; text-align:left}
+	.contCategoria{display:none;}
+	.tituloCategoria input{ position:relative; top:1px; margin-right:10px }
+	
+</style>
+
+<div id="geral">
+<div class="corpo">
+
+<script type="text/javascript" src="<?php echo JS; ?>jquery-ui-1.11.4.js"></script>
+	
+	<form id="formInscricao" style="width:1000px" id="contactform" class="rounded" method="POST" action="<?php echo CONTROLLER . 'inscricao.php'?>" enctype="multipart/form-data" >
+			<input type="hidden" name="arrDadosEscola[id_escola]" value="" />
+			<p align="center" class="tituloForm" ><b>DADOS DA ESCOLA</b></p>
+			<div class="field">
+				<label for="name">Escola:</label>
+				<input required  style="width:379px"  type="text" class="input" name="arrDadosEscola[escola]" id="name" value="<?php echo $arDados['nome']; ?>" />
+				CNPJ: <input required type="text" class="input" name="arrDadosEscola[cnpj]" id="cnpj" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			<div class="field">
+				<label  for="name">Diretor(a) responsável:</label>
+				<input required  style="width:744px" type="text" class="input" name="arrDadosEscola[diretor_responsavel]" id="name" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			<div class="field">
+				<label for="name">CEP:</label>
+				<input required type="text" style="width:100px" onblur="buscaCEP();" class="input" name="arrDadosEscola[cep]" id="cep" value="<?php echo $arDados['cep']; ?>" />
+				Endereço: <input required  style="width:284px" type="text" class="input" name="arrDadosEscola[endereco]" id="endereco" value="<?php echo $arDados['nome']; ?>" />
+				Setor: <input required style="width:200px" type="text" class="input" name="arrDadosEscola[setor]" id="setor" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			<div class="field">
+				<label for="name">Município: </label>
+				<input required  type="text" class="input" name="arrDadosEscola[municipio]" id="cidade" value="<?php echo $arDados['nome']; ?>" />
+				UF: <input required style="width:30px"  type="text" class="input" name="arrDadosEscola[uf]" id="uf" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			<div class="field">
+				<label for="name">Telefone 1:</label>
+				<input required type="text" class="input fone" name="arrDadosEscola[telefone_1]" id="name" value="<?php echo $arDados['nome']; ?>" />
+				Telefone 2:
+				<input   style="width:340px"  type="text" class="input fone" name="arrDadosEscola[telefone_2]" id="name" value="<?php echo $arDados['nome']; ?>" />
+			
+			</div>
+			<div class="field">
+				<label required for="name">E-mail escola:</label>
+				<input  type="text" class="input" name="arrDadosEscola[email_escola]" id="name" value="<?php echo $arDados['nome']; ?>" />
+				E-mail diretor(a): <input  style="width:297px" type="text" class="input" name="arrDadosEscola[email_diretor]" id="name" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			<p>&nbsp;</p>
+			<p class="tituloForm" ><b>DADOS SOBRE A REALIZAÇÃO DO CONCURSO</b></p>
+			<input type="hidden" name="arrDadosConcurso[id_concurso]" value="1">
+			<input type="hidden" name="arrDadosConcurso[id_dados_concurso]" />
+			
+			<div class="field">
+				<label for="name" style="width:300px">Número total de alunos mobilizados:</label>
+				<input  type="text" class="input" name="arrDadosConcurso[total_alunos_mobilizados]" id="name" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			<div class="field">
+				<label for="name" style="width:300px">Número total de professores mobilizados:</label>
+				<input  type="text" class="input" name="arrDadosConcurso[total_professores_mobilizados]" id="name" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			<div class="field">
+				<label for="name" style="width:300px">Número total de redações realizadas:</label>
+				<input  type="text" class="input" name="arrDadosConcurso[total_redacoes_realizadas]" id="name" value="<?php echo $arDados['nome']; ?>" />
+			</div>
+			
+			
+			<p class="tituloForm" ><b>TRABALHOS VENCEDORES</b><br />(Selecione a categoria e preencha apenas os campos referentes às categorias em que a escola está participando)</p>
+			
+			<?php
+				$contCat = 1;
+				$rsCat = $objSql->select('categoria');
+				while($arCat =  mysql_fetch_array($rsCat)){ 
+					$idCategoria = $arCat['id_categoria'];
+				?>
+					
+				<p class="tituloCategoria">
+					<input onclick="abreCont('<?php echo $contCat; ?>')" type="checkbox" name="id_categoria[]" value="<?php echo $arCat['id_categoria']; ?>"><?php echo $arCat['descricao']; ?>
+				</p>
+					<input type="hidden" name="id_concurso" value="1">
+					<input type="hidden" name="data_hora" value="<?php echo date('Y-m-d H:i:s')?>" />
+					<div id="contCategoria<?php echo $contCat; ?>" class="contCategoria">	
+					
+				<?php	
+					$contAnoCat = 0;
+					$rsAnoCat = $objSql->select('ano_categoria'," WHERE id_categoria = '{$idCategoria}'");
+						while($arAnoCat =  mysql_fetch_array($rsAnoCat)){
+							(($contAnoCat%2 == 1) ? $cor ='f1f1f1' : $cor = 'fff');
+				?>
+				
+					<input type="hidden" name="ano[]" value="<?php echo $arAnoCat['ano']; ?>">
+					<table>
+						<tr>
+							<td style="background:#<?php echo $cor; ?>; padding:0 10px;" align="center"> <?php echo $arAnoCat['ano']; ?> </td>
+							<td>
+								<table width="100%">
+									<tr>
+										<td style="background:#<?php echo $cor; ?>;" width="1005"> 
+											<div class="field">
+												<label for="name" style="width:170px">Aluno(a) Vencedor(a):</label>
+												<input type="hidden" name="aluno_vencedor[id_categoria][]" value="<?php echo $idCategoria; ?>" />
+												<input type="hidden" name="aluno_vencedor[ano][]" value="<?php echo $arAnoCat['ano']; ?>" />
+												<input  style="width:600px" type="text" class="input" name="aluno_vencedor[nome][]" id="name" value="<?php echo $arDados['nome']; ?>" />
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td style="background:#<?php echo $cor; ?>;"> 
+											<label for="name" style="width:170px">Professor Responsável:</label>
+												<input  style="width:600px" type="text" class="input" name="aluno_vencedor[professor][]" id="name" value="<?php echo $arDados['nome']; ?>" />
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table> 
+				<?php $contAnoCat++; } ?>	
+					</div>
+				<?php $contCat++; } ?>
+				
+				<p class="tituloForm" ><b>ARQUIVOS</b><br />(OBS) Arquivos a serem enviados(Plano de Sensibilização e Mobilização realizado com a comunidade escolar e redações). </p>
+				<p><input type="button" id="add_field" value="Click aqui para enviar mais de um arquivo"></p>
+				<table width="100%" id="listas">
+					<tr>
+						<td>
+							Descrição do arquivo: <input type="text" name="fileDescricao[]">&nbsp;<input type="FILE" name="fileArquivo[]" />
+						</td>
+					</tr>
+				</table>
+				<p>
+					<input type="submit" name="Submit"  id="complexConfirm"  class="button" value="Salvar dados" />
+				</p>
+	</form>
+	
+	
+</div>
+</div>

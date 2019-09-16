@@ -1,0 +1,5 @@
+.msgErro{
+    text-align: center;
+    background-color: #FFD1A4; 
+    padding:5px;
+}

@@ -1,0 +1,120 @@
+html, body {
+    background-color: #fff;
+    height: 100%;
+}
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="user"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.row-header {
+    top: 0px;
+    background-image: url("../assets/images/header.jpg");
+    height: 200px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    border: 1px solid transparent;
+    border-bottom-color: #e7e7e7;
+    border-left-color: #000;
+    border-right-color: #000;
+    border-top-color: #000;
+}
+.row-header {
+    top: 0px;
+    background-image: url("../images/header.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    background-color: #000;
+}
+.col{
+    padding-top: 35px;
+}
+.logo {
+    height: 50%;
+    width: 50%;
+    border: 1px solid transparent;
+    border-right-color: #fff;
+    border-left-color: #000;
+    border-top-color: #000;
+    border-bottom-color: #000;
+}
+.col-tittle {
+    padding-top: 25px;
+}
+@media only screen and (max-width: 768px){
+    .text-tittle {
+        text-align: center;
+        color: #fff;
+    }
+    .row-header {
+        top: 0px;
+        height: 200px;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-bottom: 0px;
+        background-color: #000;
+    }
+
+}
+@media only screen and (min-width: 769px){
+    .text-tittle {
+        text-align: left;
+        color: #fff;
+    }
+    .row-header {
+        top: 0px;
+        background-image: url("../images/header.png");
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 200px;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-bottom: 0px;
+        background-color: #000;
+    }
+
+}
+.text-aviso {
+    text-align: center;
+    color: #000;
+}
