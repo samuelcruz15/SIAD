@@ -14,7 +14,7 @@ define('B_BANCO', 'siad');
 /* * ******* CONSTANTES CAMADA - VISAO E REDIRECIONAMENTO ******* */
 $PROTOCOLO = (strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') == true) ? 'https' : 'http';
 define('PROTOCOLO', $PROTOCOLO);
-define('DIR', '/siad/');
+define('DIR', '/SIAD/');
 
 define('SERVER', $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT']);
 define('RAIZ', PROTOCOLO . '://' . SERVER . DIR);
