@@ -7,11 +7,14 @@ class Login extends MLogin {
 
     function acessar($arrDadosForm) {
 
+        
+       
 
         $arrDadosForm = $_POST['arrDadosForm'];
         $auth_pass = $arrDadosForm['str_senha'];
         $usuario = $arrDadosForm['str_login'];
-
+/*
+ * // LDAP nao funciona fora da rede DPU
         //Verificando se existe na rede
         $dom = '@dpu.gov.br';
         $ldap_server = "ldap://10.0.2.253";
@@ -36,6 +39,8 @@ class Login extends MLogin {
             exit;
         }
 
+  */      
+    
         //Se chegou ate aqui é pq existe na rede
         //Verificar se existe no banco
         $buscarUsuario = $this->validaAcesso($arrDadosForm);
