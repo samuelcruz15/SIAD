@@ -7,40 +7,37 @@ class Login extends MLogin {
 
     function acessar($arrDadosForm) {
 
-        
-       
 
         $arrDadosForm = $_POST['arrDadosForm'];
         $auth_pass = $arrDadosForm['str_senha'];
         $usuario = $arrDadosForm['str_login'];
-/*
- * // LDAP nao funciona fora da rede DPU
-        //Verificando se existe na rede
-        $dom = '@dpu.gov.br';
-        $ldap_server = "ldap://10.0.2.253";
-        $auth_user = "dpu\\" . $usuario;
 
-        $base_dn = "ou=DPGU, dc=dpu, dc=gov, dc=br";
+        /*
+          //Verificando se existe na rede
+          $dom = '@dpu.gov.br';
+          $ldap_server = "ldap://10.0.2.253";
+          $auth_user = "dpu\\" . $usuario;
 
-        $filter = "(&(objectClass=user)(objectCategory=person)(cn=*)(samaccountname=$usuario))";
-        //$filter = "(&(&(&(objectCategory=person)(objectClass=user)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))(samaccountname=$usuario)(|(description=estag*)(description=terc*)(description=colab*)(description=serv*)(description=defe*))))";
-        if (!($connect = ldap_connect($ldap_server))) {
-            $this->redirect('3', "login/inicio");
-            exit;
-        }
+          $base_dn = "ou=DPGU, dc=dpu, dc=gov, dc=br";
 
-        if (!($bind = ldap_bind($connect, $auth_user, $auth_pass))) {
-            $this->redirect('4', "login/inicio"); //Erro na autenticação
-            exit;
-        }
+          $filter = "(&(objectClass=user)(objectCategory=person)(cn=*)(samaccountname=$usuario))";
+          //$filter = "(&(&(&(objectCategory=person)(objectClass=user)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))(samaccountname=$usuario)(|(description=estag*)(description=terc*)(description=colab*)(description=serv*)(description=defe*))))";
+          if (!($connect = ldap_connect($ldap_server))) {
+          $this->redirect('3', "login/inicio");
+          exit;
+          }
 
-        if (!($search = ldap_search($connect, $base_dn, $filter))) {
-            $this->redirect('5', "login/inicio"); //Erro na consulta do usuario
-            exit;
-        }
+          if (!($bind = ldap_bind($connect, $auth_user, $auth_pass))) {
+          $this->redirect('4', "login/inicio"); //Erro na autenticação
+          exit;
+          }
 
-  */      
-    
+          if (!($search = ldap_search($connect, $base_dn, $filter))) {
+          $this->redirect('5', "login/inicio"); //Erro na consulta do usuario
+          exit;
+          }
+
+         */
         //Se chegou ate aqui é pq existe na rede
         //Verificar se existe no banco
         $buscarUsuario = $this->validaAcesso($arrDadosForm);

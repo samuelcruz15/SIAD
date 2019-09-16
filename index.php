@@ -33,7 +33,7 @@ if (@$segundos > @$limite) {
     die($oController->js_junto("Sua seção expirou 30 minutos, Faça o login novamente.                                Último acesso: $ultima_entrada", RAIZ . 'login/inicio'));
 }
 
-if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pagina != 'acessoNegado') AND ($modulo != 'inicio' and $pagina != 'manual') AND ($modulo != 'inicio' and $pagina != 'home') AND ($modulo != 'login' and $pagina != 'manutencao')) {
+if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pagina != 'acessoNegado') AND ( $modulo != 'inicio' and $pagina != 'manual') AND ( $modulo != 'inicio' and $pagina != 'home') AND ( $modulo != 'login' and $pagina != 'manutencao')) {
     $retornoValidaView = $oController->validaLogin($modulo, $pagina);
     if ($retornoValidaView == false) {
         echo "<script>location.href='" . RAIZ . "erro/acessoNegado'; </script>";
@@ -52,7 +52,7 @@ if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pa
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-            <title> SIAD </title>
+            <title> Siad </title>
             <meta name="description" content="Descrição do Sistema"/>
             <meta name="author" content="Coordenação de Sistemas - STI"/>
 
@@ -72,7 +72,7 @@ if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pa
             <link href="<?php echo CSS; ?>page-level-plugins/bootstrap-daterangepicker/bootstrap-timepicker.css" rel="stylesheet" type="text/css" /><!-- Data Picker -->
             <link href="<?php echo CSS; ?>page-level-plugins/bootstrap-daterangepicker/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" /><!-- Data Picker -->
             <link href="<?php echo CSS; ?>page-level-plugins/bootstrap-daterangepicker/clockface.css" rel="stylesheet" type="text/css" /><!-- Data Picker -->
-            <!-- END PAGE LEVEL PLUGINS --> 
+            <!-- END PAGE LEVEL PLUGINS -->
 
             <!-- BEGIN THEME GLOBAL STYLES -->
             <link href="<?php echo CSS; ?>theme-global/components-rounded.css" rel="stylesheet" id="style_components" type="text/css" />    <!-- components.css: Border-radius: 0px  -->
@@ -140,14 +140,14 @@ if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pa
 
 
 
-            
+
             <!-- OUTROS JS e CSS | FORA DO AMBIENTE METRONIC -->
-                <!-- GRAFICOS -->
-                <link href="<?php echo PUBLICO; ?>graficos/estilografico.css" rel="stylesheet" type="text/css" />
-                <script src="<?php echo PUBLICO; ?>graficos/ammap.js "></script>
-                <script src="<?php echo PUBLICO; ?>graficos/pie.js "></script>
-                <script src="<?php echo PUBLICO; ?>graficos/brazilLow.js "></script>
-                <!-- FIM GRAFICOS -->
+            <!-- GRAFICOS -->
+            <link href="<?php echo PUBLICO; ?>graficos/estilografico.css" rel="stylesheet" type="text/css" />
+            <script src="<?php echo PUBLICO; ?>graficos/ammap.js "></script>
+            <script src="<?php echo PUBLICO; ?>graficos/pie.js "></script>
+            <script src="<?php echo PUBLICO; ?>graficos/brazilLow.js "></script>
+            <!-- FIM GRAFICOS -->
             <!-- FIM OUTROS JS e CSS | FORA DO AMBIENTE METRONIC -->
 
         </head>
@@ -167,9 +167,9 @@ if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pa
                 <!-- END SIDEBAR -->
                 <div class="page-content-wrapper">
                     <div class="page-content" style="min-height: 930px;">
-                    <!-- BEGIN CONTENT BODY -->
-                    <?php require_once $urlRedirect; ?>
-                    <!-- END CONTENT BODY -->
+                        <!-- BEGIN CONTENT BODY -->
+                        <?php require_once $urlRedirect; ?>
+                        <!-- END CONTENT BODY -->
                     </div>
                 </div>
             </div>
@@ -179,20 +179,20 @@ if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pa
         </body>
     </html>
 
-<?php } else if ($modulo == 'inicio'){ ?>
+<?php } else if ($modulo == 'inicio') { ?>
     <html lang="br">
         <head>
-            <?php require_once 'view/login/scripts.php'; ?> 
+            <?php require_once 'view/login/scripts.php'; ?>
         </head>
         <body class="page-sidebar-closed-hide-logo page-container-bg-solid">
             <div class="clearfix"> </div>
             <div class="page-container">
                 <div class="page-content-wrapper" >
                     <div class="page-content" style="min-height: 930px; margin-left: 0px;">
-                        <!-- BEGIN CONTENT BODY --> 
-                        <?php 
+                        <!-- BEGIN CONTENT BODY -->
+                        <?php
                         if ($modulo == 'inicio' && $pagina == 'home') {
-                            require_once 'view/inicio/home.php'; 
+                            require_once 'view/inicio/home.php';
                         } else if ($modulo == 'inicio' && $pagina == 'manual') {
                             require_once 'view/inicio/manual.php';
                         }
@@ -202,17 +202,15 @@ if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pa
                 </div>
             </div>
         </body>
-    </html> 
-    <?php 
-    }
-    else if($modulo == 'login' && $pagina == 'manutencao') {
-        //Página de Manutenção do Sistema - Fora do Ar
-        require_once 'view/login/manutencao.php';
-    }
-    else {
-        //require_once $urlRedirect;
-        //verificar tem que somente carregar a página de login quando não encontrar
-        require_once 'view/login/inicio.php';
-    }
-    ?>
+    </html>
+    <?php
+} else if ($modulo == 'login' && $pagina == 'manutencao') {
+    //Página de Manutenção do Sistema - Fora do Ar
+    require_once 'view/login/manutencao.php';
+} else {
+    //require_once $urlRedirect;
+    //verificar tem que somente carregar a página de login quando não encontrar
+    require_once 'view/login/inicio.php';
+}
+?>
 <!-- FIM VALIDAÇÃO DE LOGIN -->

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title> FRAME - Menu Vertical </title>
+        <title> SIAD </title>
         <meta name="description" content="Descrição do Sistema"/>
         <meta name="author" content="Coordenação de Sistemas - STI"/>
 
@@ -75,7 +75,7 @@
                                 <img src="<?php echo IMG; ?>logo/logo-branco.png" height="100" alt="Defensoria Pública da União" >
                             </td>
                             <td>
-                                <font size="5" color="#FFFFFF">SIAD<br>Sistemas de Análise de Dados</font>
+                                <font size="5" color="#FFFFFF">Siad<br>Sistema de Análise de Dados</font>
                             </td>
                         </tr>
                     </table>
@@ -86,7 +86,7 @@
             <p align="center">
                 <img src="<?php echo IMG; ?>logo/logo-branco.png" height="100" alt="">
                 <br/><br/>
-                <font size="4" color="#FFFFFF">SIAD</font>
+                <font size="4" color="#FFFFFF">Nome do sistema Nome do sistema</font>
             </p>
         </div>
         <!-- FIM LOGO -->
