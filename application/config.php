@@ -31,5 +31,5 @@ define('CONTROLLER', RAIZ . 'controller/');
 $_SESSION['PATH'] = $_SERVER['DOCUMENT_ROOT'] . str_replace(':84', '', DIR);
 
 //comentando o comentario
-//ta
+//agora sim 
 ?>
