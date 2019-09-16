@@ -9,12 +9,12 @@ error_reporting(E_ALL);
 define('B_HOST', 'localhost');
 define('B_USUARIO', 'root');
 define('B_SENHA', '');
-define('B_BANCO', 'frame');
+define('B_BANCO', 'siad');
 
 /* * ******* CONSTANTES CAMADA - VISAO E REDIRECIONAMENTO ******* */
 $PROTOCOLO = (strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') == true) ? 'https' : 'http';
 define('PROTOCOLO', $PROTOCOLO);
-define('DIR', '/frame_menu_vertical_local/');
+define('DIR', '/SIAD/');
 
 define('SERVER', $_SERVER['SERVER_NAME'] . ':8001');
 define('RAIZ', PROTOCOLO . '://' . SERVER . DIR);
