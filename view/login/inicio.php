@@ -75,7 +75,7 @@
                                 <img src="<?php echo IMG; ?>logo/logo-branco.png" height="100" alt="Defensoria Pública da União" >
                             </td>
                             <td>
-                                <font size="5" color="#FFFFFF">Nome do sistema<br>Nome do sistema</font>
+                                <font size="5" color="#FFFFFF">SIAD<br>Sistemaas de Análise de Dados</font>
                             </td>
                         </tr>
                     </table>
