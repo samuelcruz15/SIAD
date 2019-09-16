@@ -52,7 +52,7 @@ if (($modulo != 'login' and $pagina != 'inicio') AND ( $modulo != 'erro' and $pa
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-            <title> FRAME - Menu Vertical </title>
+            <title> SIAD </title>
             <meta name="description" content="Descrição do Sistema"/>
             <meta name="author" content="Coordenação de Sistemas - STI"/>
 
